@@ -15,6 +15,14 @@ module Yabeda
         next unless rails_server? || puma_server?
 
         ::Yabeda::Rails.install!
+
+        if puma_server?
+          require 'yabeda/rails/puma/remote_adapter'
+           Yabeda.register_adapter(
+             :rails_remote,
+             Yabeda::Rails::Puma::RemoteAdapter.new
+           )
+        end
       end
     end
   end

@@ -5,6 +5,10 @@ require "yabeda/rails/railtie"
 
 module Yabeda
   module Rails
+    class << self
+      attr_accessor :metrics_receive_url
+    end
+
     LONG_RUNNING_REQUEST_BUCKETS = [
       0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10, # standard
       30, 60, 120, 300, 600, # Sometimes requests may be really long-running
